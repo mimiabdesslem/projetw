@@ -3,6 +3,7 @@
 include "config.php";
 class ClientC {
 function afficherClientcc($Client){
+	    echo "Id_client: ".$Client->getId_client()."<br>";
 		echo "Nom: ".$Client->getNom()."<br>";
 		echo "Prenom: ".$Client->getPrenom()."<br>";
 		echo "Email: ".$Client->getEmail()."<br>";
@@ -12,26 +13,27 @@ function afficherClientcc($Client){
 	}
 	
 	function ajouterClientC($Client){
-		$sql="insert into client(Nom,Prenom,Email,Motdepasse,Adresse,Telephone) values (:Nom,:Prenom,:Email,:Motdepasse,:Adresse,:Telephone)";
+		$type="user";
+		$sql="insert into client(Nom,Prenom,Email,Motdepasse,Adresse,Telephone,type) values (:Nom,:Prenom,:Email,:Motdepasse,:Adresse,:Telephone,:type)";
 		$db = config::getConnexion();
 		try{
         $req=$db->prepare($sql);
 		
-        
+        $Id_client=$Client->getId_client();
         $Nom=$Client->getNom();
         $Prenom=$Client->getPrenom();
         $Email=$Client->getEmail();
         $Motdepasse=$Client->getMotdepasse();
         $Adresse=$Client->getAdresse();
         $Telephone=$Client->getTelephone();
-
 		$req->bindValue('Nom',$Nom);
 		$req->bindValue(':Prenom',$Prenom);
 		$req->bindValue(':Email',$Email);
 		$req->bindValue(':Motdepasse',$Motdepasse);
 		$req->bindValue(':Adresse',$Adresse);
 		$req->bindValue(':Telephone',$Telephone);
-		
+		$req->bindValue(':type',$type);
+
             $req->execute();
            
         }
@@ -67,19 +69,21 @@ function afficherClientcc($Client){
         }
 	}
 	function modifierClient($Client,$Telephone){
-		$sql="UPDATE client SET Nom=:Nom,Prenom=:Prenom,Email=:Email,Motdepasse=:Motdepasse,Adresse=:Adresse,Telephone=:Telephone WHERE Telephone=:Telephone";
+		$sql="UPDATE client SET Id_client=:Id_client, Nom=:Nom,Prenom=:Prenom,Email=:Email,Motdepasse=:Motdepasse,Adresse=:Adresse,Telephone=:Telephone WHERE Telephone=:Telephone";
 		
 		$db = config::getConnexion();
 		//$db->setAttribute(PDO::ATTR_EMULATE_PREPARES,false);
 try{		
         $req=$db->prepare($sql);
+        $Id_client=$Client->getId_client();
         $Nom=$Client->getNom();
         $Prenom=$Client->getPrenom();
 		$Email=$Client->getEmail();
         $Motdepasse=$Client->getMotdepasse();
         $Adresse=$Client->getAdresse();
         $Telephone=$Client->getTelephone();
-		$datas = array(':Nom'=>$Nom,':Prenom'=>$Prenom,':Email'=>$Email, ':Motdepasse'=>$Motdepasse, ':Adresse'=>$Adresse,':Telephone'=>$Telephone);
+		$datas = array(':Id_client'=>$Id_client,':Nom'=>$Nom,':Prenom'=>$Prenom,':Email'=>$Email, ':Motdepasse'=>$Motdepasse, ':Adresse'=>$Adresse,':Telephone'=>$Telephone);
+		$req->bindValue(':Id_client',$Id_client);	
 		$req->bindValue(':Nom',$Nom);
 		$req->bindValue(':Prenom',$Prenom);
 		$req->bindValue(':Email',$Email);

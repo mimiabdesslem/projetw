@@ -9,18 +9,16 @@ function afficherHistoriquecc ($Historique){
 	}
 	
 	function ajouterHistorique($Historique){
-		$sql="insert into historique (Reference,NomArticle,Marque,Prix) values (:reference,:nomarticle,:marque,:prix)";
+		$sql="insert into historique (NomArticle,Marque,Prix) values (:nomarticle,:marque,:prix)";
 		$db = config::getConnexion();
 		try{
         $req=$db->prepare($sql);
 		
         
-        $Reference=$Historique->getReference();
         $NomArticle=$Historique->getNomArticle();
         $Marque=$Historique->getMarque();
         $Prix=$Historique->getPrix();
 
-		$req->bindValue('reference',$Reference);
 		$req->bindValue(':nomarticle',$NomArticle);
 		$req->bindValue(':marque',$Marque);
 		$req->bindValue(':prix',$Prix);

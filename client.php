@@ -1,12 +1,15 @@
 <?PHP
 class Client{
+	private $Id_client;
 	private $Nom;
 	private $Prenom;
 	private $Email;
 	private $Motdepasse;
 	private $Adresse;
 	private $Telephone;
+	private $type;
 	function __construct($Nom,$Prenom,$Email,$Motdepasse,$Adresse,$Telephone){
+		
 		$this->Nom=$Nom;
 		$this->Prenom=$Prenom;
 		$this->Email=$Email;
@@ -14,6 +17,13 @@ class Client{
 		$this->Adresse=$Adresse;
 		$this->Telephone=$Telephone;
 
+
+	}
+	function gettype(){
+		return $this->type;
+	}
+	function getId_client(){
+		return $this->Id_client;
 	}
 	
 	function getNom(){
@@ -33,6 +43,9 @@ class Client{
 	}
 	function getTelephone(){
 		return $this->Telephone;
+	}
+	function setId_client($Id_client){
+		$this->Id_client=$Id_client;
 	}
 
 	function setNom($Nom){

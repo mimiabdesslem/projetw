@@ -1,7 +1,10 @@
-<?PHP
+<?php
+session_start();
 include "../login/core/clientC.php";
-$ClientC=new ClientC();
-$listeEmployes=$ClientC->afficherClient();
+$email=$_SESSION["email"];
+$sql="SELECT * From client where Email='" .$email."'";
+    $db = config::getConnexion();
+    $liste=$db->query($sql);
 
 //var_dump($listeEmployes->fetchAll());
 ?>
@@ -27,8 +30,8 @@ $listeEmployes=$ClientC->afficherClient();
   <link rel="stylesheet" type="text/css" href="css/zabuto_calendar.css">
   <link rel="stylesheet" type="text/css" href="lib/gritter/css/jquery.gritter.css" />
   <!-- Custom styles for this template -->
-  <link href="css/style.css" rel="stylesheet">
-  <link href="css/style-responsive.css" rel="stylesheet">
+  <link href="css1/style.css" rel="stylesheet">
+  <link href="css1/style-responsive.css" rel="stylesheet">
   <script src="lib/chart-master/Chart.js"></script>
 
   <!-- =======================================================
@@ -67,83 +70,13 @@ $listeEmployes=$ClientC->afficherClient();
         <!-- sidebar menu start-->
         <ul class="sidebar-menu" id="nav-accordion">
         
-          <li class="sub-menu">
-            <a href="javascript:;">
-              <i class="fa fa-desktop"></i>
-              <span>Commmandes</span>
-              </a>
-            <ul class="sub">
-              <li><a href="commandes.html">Commandes</a></li>
-              <li><a href="factures.html">Factures</a></li>
-              <li><a href="panier.html">Panier</a></li>
-              
-            </ul>
-          </li>
-          <li class="sub-menu">
-            <a href="javascript:;">
-              <i class="fa fa-cogs"></i>
-              <span>Produits</span>
-              </a>
-            <ul class="sub">
-              <li><a href="stock.html">Stock</a></li>
-              <li><a href="services.html">Services</a></li>
-              <li><a href="catalogue.html">Catalogue</a></li>
-            </ul>
-          </li>
-          <li class="sub-menu">
-            <a href="javascript:;">
-              <i class="fa fa-book"></i>
-              <span>SAV</span>
-              </a>
-            <ul class="sub">
-              <li><a href="sav.html">SAV</a></li>
-              <li><a href="reclamation.html">Reclamations</a></li>
-              <li><a href="rendezvous.html">Rendez-vous</a></li>
-              
-            </ul>
-          </li>
-          <li class="sub-menu">
-            <a href="javascript:;">
-              <i class="fa fa-tasks"></i>
-              <span>Clients</span>
-              </a>
-            <ul class="sub">
-              <li><a href="clients.php">Clients</a></li>
-              <li><a href="recherche.php">Recherche</a></li>
-              <li><a href="historique.php">Historique</a></li>
-              
-            </ul>
-          </li>
-          <li class="sub-menu">
-            <a href="javascript:;">
-              <i class="fa fa-th"></i>
-              <span>Livraisons</span>
-              </a>
-            <ul class="sub">
-              <li><a href="livdispo.html">Livraisons disponibles</a></li>
-              <li><a href="livreurs.html">Livreurs</a></li>
-              <li><a href="suivi.html">Suivi</a></li>
-            </ul>
-          </li>
            <li class="sub-menu">
             <a href="javascript:;">
-              <i class="fa fa-desktop"></i>
-              <span>Paiement</span>
-              </a>
-            <ul class="sub">
-              <li><a href="commandes.html">Paiement par carte bancaire</a></li>
-              <li><a href="factures.html">Paiement par chèque</a></li>
-              <li><a href="panier.html">Paiement à la livraison</a></li>
-              
-            </ul>
-          </li>
-          <li class="sub-menu">
-            <a href="javascript:;">
               <i class=" fa fa-bar-chart-o"></i>
-              <span>Publicité</span>
+              <span>votre compte</span>
               </a>
             <ul class="sub">
-              <li><a href="pub.html">Publicité</a></li>
+              <li><a href="dashbord.php">votre compte</a></li>
               
               
             </ul>
@@ -209,7 +142,6 @@ $listeEmployes=$ClientC->afficherClient();
   <!--Table head-->
   <thead>
     <tr>
-       <th>Id</th>
       <th>Nom</th>
       <th>Prenom</th>
       
@@ -223,11 +155,9 @@ $listeEmployes=$ClientC->afficherClient();
   <!--Table head-->
 <tbody>
   <!--Table body--><?PHP
-  foreach($listeEmployes as $row){
+  foreach($liste as $row){
   ?>
   <tr>
-<td><?PHP echo $row['Id_client']; ?></td>
-
   <td><?PHP echo $row['Nom']; ?></td>
   <td><?PHP echo $row['Prenom']; ?></td>
   
@@ -235,7 +165,7 @@ $listeEmployes=$ClientC->afficherClient();
   <td><?PHP echo $row['Motdepasse']; ?></td>
   <td><?PHP echo $row['Adresse']; ?></td>
   <td><?PHP echo $row['Telephone']; ?></td>
-  <td><form method="POST" action="../login/views/supprimerClient.php">
+  <td><form method="POST" action="../login/views/supprimerClient_front.php">
   <input type="submit" name="supprimer" value="supprimer">
   <input type="hidden" value="<?PHP echo $row['Telephone']; ?>" name="Telephone">
   </form>
