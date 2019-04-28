@@ -10,6 +10,7 @@ function afficherClientcc($Client){
 		echo "Motdepasse: ".$Client->getMotdepasse()."<br>";
 		echo "Adresse: ".$Client>getAdresse()."<br>";
 		echo "Telephone: ".$Client->getTelephone()."<br>";
+		echo "type: ".$Client->gettype()."<br>";
 	}
 	
 	function ajouterClientC($Client){
@@ -26,6 +27,7 @@ function afficherClientcc($Client){
         $Motdepasse=$Client->getMotdepasse();
         $Adresse=$Client->getAdresse();
         $Telephone=$Client->getTelephone();
+        $type=$Client->gettype();
 		$req->bindValue('Nom',$Nom);
 		$req->bindValue(':Prenom',$Prenom);
 		$req->bindValue(':Email',$Email);
@@ -69,7 +71,7 @@ function afficherClientcc($Client){
         }
 	}
 	function modifierClient($Client,$Telephone){
-		$sql="UPDATE client SET Id_client=:Id_client, Nom=:Nom,Prenom=:Prenom,Email=:Email,Motdepasse=:Motdepasse,Adresse=:Adresse,Telephone=:Telephone WHERE Telephone=:Telephone";
+		$sql="UPDATE client SET Id_client=:Id_client, Nom=:Nom,Prenom=:Prenom,Email=:Email,Motdepasse=:Motdepasse,Adresse=:Adresse,Telephone=:Telephone, type=:type, WHERE Telephone=:Telephone";
 		
 		$db = config::getConnexion();
 		//$db->setAttribute(PDO::ATTR_EMULATE_PREPARES,false);
@@ -82,7 +84,8 @@ try{
         $Motdepasse=$Client->getMotdepasse();
         $Adresse=$Client->getAdresse();
         $Telephone=$Client->getTelephone();
-		$datas = array(':Id_client'=>$Id_client,':Nom'=>$Nom,':Prenom'=>$Prenom,':Email'=>$Email, ':Motdepasse'=>$Motdepasse, ':Adresse'=>$Adresse,':Telephone'=>$Telephone);
+        $type=$Client->gettype();
+		$datas = array(':Id_client'=>$Id_client,':Nom'=>$Nom,':Prenom'=>$Prenom,':Email'=>$Email, ':Motdepasse'=>$Motdepasse, ':Adresse'=>$Adresse,':Telephone'=>$Telephone,':type'=>$type);
 		$req->bindValue(':Id_client',$Id_client);	
 		$req->bindValue(':Nom',$Nom);
 		$req->bindValue(':Prenom',$Prenom);
@@ -90,6 +93,7 @@ try{
 		$req->bindValue(':Motdepasse',$Motdepasse);
 		$req->bindValue(':Adresse',$Adresse);
 		$req->bindValue(':Telephone',$Telephone);
+		$req->bindValue(':type',$type);
 		
             $s=$req->execute();
 			

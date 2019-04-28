@@ -1,6 +1,6 @@
 <?PHP
 //include "../config.php";
-require  "../login/core/ClientC.php";
+require  "../core/ClientC.php";
 $ClientC=new ClientC();
 if(!(isset($_GET['recherche']))){
 $listeEmployes=$ClientC->afficherClient();
@@ -238,6 +238,7 @@ foreach($listeEmploye1 as $rows){
       <th>Motdepasse </th>
       <th>Adresse</th>
       <th>Telephone</th>
+       <th>type</th>
       <th></th>
       <th></th>
     </tr>
@@ -257,6 +258,7 @@ foreach($listeEmployes as $row){
   <td><?PHP echo $row['Motdepasse']; ?></td>
   <td><?PHP echo $row['Adresse']; ?></td>
   <td><?PHP echo $row['Telephone']; ?></td>
+  <td><?PHP echo $row['type']; ?></td>
   <td><form method="POST" action="../login/views/supprimerClient.php">
   /
   <input type="submit" name="supprimer"  class="btn btn-danger"  value="supprimer">
@@ -274,6 +276,7 @@ foreach($listeEmployes as $row){
   <!--Table body-->
 
 </table>
+    <a class="btn btn-primary" href="../index.html" role="button">Retour au front</a>
 </div>
 <div class="row">
   <div class="col-lg-6">
