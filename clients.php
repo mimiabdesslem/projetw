@@ -1,5 +1,5 @@
 <?PHP
-include "../login/core/clientC.php";
+include "../core/clientC.php";
 $ClientC=new ClientC();
 $listeEmployes=$ClientC->afficherClient();
 
@@ -250,8 +250,10 @@ $listeEmployes=$ClientC->afficherClient();
   <!--Table body-->
 
 </table>
+    <a class="btn btn-primary" href="../index.html" role="button">Retour au front</a>
       </section>
     </section>
+
     <!--main content end-->
     <!--footer start-->
     

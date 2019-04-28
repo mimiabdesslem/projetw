@@ -7,7 +7,6 @@ $listeEmployes=$ClientC->afficherClient();
 ?>
 <table border="1">
 <tr>
-<td>Id_client</td>
 <td>Nom</td>
 <td>Prenom</td>
 <td>Email</td>

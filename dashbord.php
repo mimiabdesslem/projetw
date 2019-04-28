@@ -1,6 +1,6 @@
 <?php
 session_start();
-include "../login/core/clientC.php";
+include "login/core/clientC.php";
 $email=$_SESSION["email"];
 $sql="SELECT * From client where Email='" .$email."'";
     $db = config::getConnexion();
