@@ -1,4 +1,7 @@
-﻿<!DOCTYPE html>
+<?php
+session_start();
+?>
+<!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
@@ -53,8 +56,16 @@ Rades</a></li>
                     <ul class="header-links pull-right">
                         <li><a href="#"><i class="fa fa-dollar"></i>
 TND</a></li>
-         <li><a href="login.html"><i class="fa fa-user-o"></i> Espace Client</a></li>
-                        <li><a href="fidelite.html"><i class="fa fa-user-o"></i> Fidelité</a></li>
+        <li><a id="sign-up"href="#" type="button" data-toggle="modal"
+data-target="#myModal"><span class="glyphicon glyphicon-user"></span>
+espace admin</a></li>
+
+            
+                        <li><a href="fidelite.html"><i class="fa
+fa-user-o"></i> Fidelité</a></li>
+                         <li><a href="login/login.html"><i class="fa
+fa-user-o"></i> Espace Client</a></li>
+                    </ul>
 </div>
 </div>
             <!-- /TOP HEADER -->
@@ -178,71 +189,70 @@ TND</a></li>
             <!-- /container -->
         </nav>
 
-
     <div class="main">
 
+      
 
-        <!-- Sign up form -->
-            <form method="POST" action="views/ajoutClient.php" name="f" onsubmit="return verif()">
+        <!-- Sing in  Form -->
+                                <form method="POST" class="register-form" id="login-form">
 
-        <section class="signup">
+        <section class="sign-in">
             <div class="container">
-                <div class="signup-content">
-                    <div class="signup-form">
-                        <h2 class="form-title">Creer un compte client</h2>
-                        
-                            
-                            <div class="form-group">
-                                <label for="name"><i class="zmdi zmdi-account material-icons-name"></i></label>
-                                <input type="text" name="Nom" id="name" placeholder="Votre Nom" />
-                                
-                            </div>
-                             <div class="form-group">
-                                <label for="name"><i class="zmdi zmdi-account material-icons-name"></i></label>
-                                <input type="text" name="Prenom" id="name" placeholder="Votre Prenom" />
-                            </div>
-                            <div class="form-group">
-                                <label for="email"><i class="zmdi zmdi-email"></i></label>
-                                <input type="email" name="Email" id="email" placeholder="Votre Email" />
-                            </div>
-                             <div class="form-group">
-                                <label for="name"><i class="zmdi zmdi-account material-icons-name"></i></label>
-                                <input type="text" name="Adresse" id="name" placeholder="Votre adresse" />
-                            </div>
-                            <div class="form-group">
-                                <label for="pass"><i class="zmdi zmdi-lock"></i></label>
-                                <input type="password" name="Motdepasse" id="pass" placeholder="Votre mot de passe" />
-                            </div>
-                             <div class="form-group">
-                                <label for="name"><i class="zmdi zmdi-account material-icons-name"></i></label>
-                                <input type="text" name="Telephone" id="name" placeholder="Votre Telephone" />
-                            </div>
-                            <div class="form-group">
-                                <label for="name"><i class="zmdi zmdi-account material-icons-name"></i></label>
-                                <select type="type">
-                                    <option>selectionnez le type du compte</option>
-                                    <option>user</option>
-                                    <option>admin</option>
-                                </select>                            </div>
-                            <a href="login.html">
-                            <div class="form-group form-button" >
-                    <input type="submit" name="ajouter" value="ajouter">
-                            </div>
-                             </a>
-                                
-                        
+                <div class="signin-content">
+                    <div class="signin-image">
+                       
+                        <a href="creer compte.html" class="signup-image-link">Créer un compte client</a>
                     </div>
-                    <div class="signup-image">
-                        <figure><img src="images/signup-image.jpg" alt="sing up image"></figure>
-                        <a href="login.html" class="signup-image-link">J'ai deja un compte</a>
+
+                    <div class="signin-form">
+                        <h2 class="form-title">change password</h2>
+                        <form method="POST" action="verificaton.php"class="register-form" id="login-form">
+                            <div class="form-group">
+                                <label for="your_name"><i class="zmdi zmdi-account material-icons-name"></i></label>
+                                <input type="text" name="pasword1" id="your password" placeholder="Login"/>
+                            </div>
+                            <div class="form-group">
+                                <label for="your_pass"><i class="zmdi zmdi-lock"></i></label>
+                                <input type="password" name="pasword2" id="your_pass" placeholder="your password"/>
+                            </div>
+                            <div class="form-group form-button">
+                                
+                                 <input type="submit" name="change_password"  value="forgot password"/>
+
+                            </div>
+                       
                     </div>
                 </div>
             </div>
         </section>
+                        </form>
+
     </div>
-</form>
-    <!-- JS -->
-    <script src="vendor/jquery/jquery.min.js"></script>
+    
+<?php 
+    include "config.php";
+
+    $user=$_SESSION["user"];
+    if(isset($_POST['change_password'])){
+        if($_POST['pasword1'] == $_POST['pasword2'])
+        {
+        $sql="UPDATE client SET Motdepasse=:pasword WHERE Email=:Email";
+        $db = config::getConnexion();
+        $req=$db->prepare($sql);
+        $req->bindValue(':Email',$user);
+        $req->bindValue(':pasword',$_POST['pasword1']);
+        $s=$req->execute();
+        header('Location: login.html');
+
+        }
+        else {
+            echo "<script>alert(\"le deux password doivent etre identiques               \")</script>";
+
+        }
+    }
+
+  ?>
+   <script src="vendor/jquery/jquery.min.js"></script>
     <script src="js/main.js"></script>
     <div id="newsletter" class="section">
             <!-- container -->
