@@ -12,7 +12,7 @@ var_dump($employe1);
 //Partie3
 $HistoriqueC=new HistoriqueC();
 $HistoriqueC->ajouterHistorique($Historiques);
-header('Location: ../../back/historique.php');
+header('Location: ../back/historique.php');
 	
 }else{
 	echo "vérifier les champs";

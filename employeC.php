@@ -11,7 +11,8 @@ function afficherClientcc($Client){
 	}
 	
 	function ajouterClientC($Client){
-		$sql="insert into client(Nom,Prenom,Email,Motdepasse,Adresse,Telephone) values (:Nom,:Prenom,:Email,:Motdepasse,:Adresse,:Telephone)";
+		$type="user";
+		$sql="insert into client(Nom,Prenom,Email,Motdepasse,Adresse,Telephone,type) values (:Nom,:Prenom,:Email,:Motdepasse,:Adresse,:Telephone,:type)";
 		$db = config::getConnexion();
 		try{
         $req=$db->prepare($sql);
@@ -30,6 +31,8 @@ function afficherClientcc($Client){
 		$req->bindValue(':Motdepasse',$Motdepasse);
 		$req->bindValue(':Adresse',$Adresse);
 		$req->bindValue(':Telephone',$Telephone);
+				$req->bindValue(':type',$Type);
+
 		
             $req->execute();
            

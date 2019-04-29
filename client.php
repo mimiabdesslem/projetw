@@ -7,8 +7,8 @@ class Client{
 	private $Motdepasse;
 	private $Adresse;
 	private $Telephone;
-	private $type;
-	function __construct($Nom,$Prenom,$Email,$Motdepasse,$Adresse,$Telephone,$type){
+	
+	function __construct($Nom,$Prenom,$Email,$Motdepasse,$Adresse,$Telephone){
 		
 		$this->Nom=$Nom;
 		$this->Prenom=$Prenom;
@@ -16,13 +16,10 @@ class Client{
 		$this->Motdepasse=$Motdepasse;
 		$this->Adresse=$Adresse;
 		$this->Telephone=$Telephone;
-		$this->type=$type;
 
 
 	}
-	function gettype(){
-		return $this->type;
-	}
+	
 	function getId_client(){
 		return $this->Id_client;
 	}

@@ -59,22 +59,22 @@ function afficherHistoriquecc ($Historique){
         }
 	}
 	function modifierHistorique($Historique,$reference){
-		$sql="UPDATE Historique SET Reference=:Reference,NomArticle=:NomArticle,Marque=:Marque,Prix=:Prix WHERE Reference=:Reference";
+		$sql="UPDATE historique SET reference=:reference,nomarticle=:nomarticle,marque=:marque,prix=:prix WHERE reference=:reference";
 		
 		$db = config::getConnexion();
 		//$db->setAttribute(PDO::ATTR_EMULATE_PREPARES,false);
 try{		
         $req=$db->prepare($sql);
-        $Reference=$Historique->getReference();
+        $reference=$reference;
         $NomArticle=$Historique->getNomArticle();
 		$Marque=$Historique->getMarque();
         $Prix=$Historique->getPrix();
+$datas = array(':reference'=>$reference,':nomarticle'=>$NomArticle,':marque'=>$Marque, ':prix'=>$Prix);
 
-
-		$req->bindValue(':Reference',$Reference);
-		$req->bindValue(':NomArticle',$NomArticle);
-		$req->bindValue(':Marque',$Marque);
-		$req->bindValue(':Prix',$Prix);
+		$req->bindValue(':reference',$reference);
+		$req->bindValue(':nomarticle',$NomArticle);
+		$req->bindValue(':marque',$Marque);
+		$req->bindValue(':prix',$Prix);
 
             $s=$req->execute();
 			
@@ -99,7 +99,20 @@ try{
         }
 	}
 	
-
+function afficherprixtrier()
+	{
+		$sql="select * from historique order by prix";
+		$db=config::getConnexion();
+		try
+		{
+			$liste=$db->query($sql);
+			return $liste;
+		}
+		catch(Exception $e)
+		{
+			echo 'Erreur' .$e->getMessage();
+		}
+	}
 	
 }
 

@@ -5,10 +5,10 @@ if (isset($_GET['reference'])){
 	$HistoriqueC=new HistoriqueC();
     $result=$HistoriqueC->recupererHistorique($_GET['reference']);
 	foreach($result as $row){
-		$Nom=$row['Reference'];
-		$Prenom=$row['NomArticle'];
-		$Email=$row['Marque'];
-		$Adresse=$row['Prix'];
+		$reference=$row['reference'];
+		$nomarticle=$row['nomarticle'];
+		$marque=$row['marque'];
+		$prix=$row['prix'];
 
 
 ?>
@@ -22,19 +22,19 @@ if (isset($_GET['reference'])){
 
 <tr>
 <td>Reference</td>
-<td><input type="text" name="Reference" value="<?PHP echo $Reference ?>"></td>
+<td><input type="text" name="Reference" value="<?PHP echo $reference ?>"></td>
 </tr>
 <tr>
 <td>NomArticle</td>
-<td><input type="text" name="NomArticle" value="<?PHP echo $NomArticle ?>"></td>
+<td><input type="text" name="NomArticle" value="<?PHP echo $nomarticle ?>"></td>
 </tr>
 <tr>
 <td>Marque</td>
-<td><input type="text" name="Marque" value="<?PHP echo $Marque ?>"></td>
+<td><input type="text" name="Marque" value="<?PHP echo $marque ?>"></td>
 </tr>
 <tr>
 <td>Prix</td>
-<td><input type="text" name="Prix" value="<?PHP echo $Prix ?>"></td>
+<td><input type="text" name="Prix" value="<?PHP echo $prix ?>"></td>
 </tr>
 <tr>
 <td></td>
@@ -50,10 +50,9 @@ if (isset($_GET['reference'])){
 	}
 }
 if (isset($_POST['modifier'])){
-	$Historique=new Historique($_POST['Reference'],$_POST['NomArticle'],$_POST['Marque'],$_POST['Prix']);
-	$HistoriqueC->modifierHistorique($Historique,$_POST['reference']);
-	echo $_POST['reference'];
-	header('Location: afficherHistorique.php');
+	$Historique=new Historique($_POST['NomArticle'],$_POST['Marque'],$_POST['Prix']);
+	$HistoriqueC->modifierHistorique($Historique,$_GET['reference']);
+    header('Location: afficherHistorique.php');
 }
 ?>
 </body>

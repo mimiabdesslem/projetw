@@ -56,15 +56,8 @@ Rades</a></li>
                     <ul class="header-links pull-right">
                         <li><a href="#"><i class="fa fa-dollar"></i>
 TND</a></li>
-        <li><a id="sign-up"href="#" type="button" data-toggle="modal"
-data-target="#myModal"><span class="glyphicon glyphicon-user"></span>
-espace admin</a></li>
-
-            
-                        <li><a href="fidelite.html"><i class="fa
-fa-user-o"></i> Fidelité</a></li>
-                         <li><a href="login/login.html"><i class="fa
-fa-user-o"></i> Espace Client</a></li>
+        <li><a href="login/login.html"><i class="fa fa-user-o"></i> Espace Client</a></li>
+                        <li><a href="fidelite.html"><i class="fa fa-user-o"></i> Fidelité</a></li>
                     </ul>
 </div>
 </div>
@@ -242,7 +235,7 @@ fa-user-o"></i> Espace Client</a></li>
         $req->bindValue(':Email',$user);
         $req->bindValue(':pasword',$_POST['pasword1']);
         $s=$req->execute();
-        header('Location: login.html');
+    header('Location: login.html');
 
         }
         else {

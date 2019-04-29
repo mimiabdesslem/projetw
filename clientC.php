@@ -27,7 +27,6 @@ function afficherClientcc($Client){
         $Motdepasse=$Client->getMotdepasse();
         $Adresse=$Client->getAdresse();
         $Telephone=$Client->getTelephone();
-        $type=$Client->gettype();
 		$req->bindValue('Nom',$Nom);
 		$req->bindValue(':Prenom',$Prenom);
 		$req->bindValue(':Email',$Email);
@@ -70,30 +69,28 @@ function afficherClientcc($Client){
             die('Erreur: '.$e->getMessage());
         }
 	}
-	function modifierClient($Client,$Telephone){
-		$sql="UPDATE client SET Id_client=:Id_client, Nom=:Nom,Prenom=:Prenom,Email=:Email,Motdepasse=:Motdepasse,Adresse=:Adresse,Telephone=:Telephone, type=:type, WHERE Telephone=:Telephone";
+	function modifierClient($Client,$email){
+		$sql="UPDATE client SET  Nom=:Nom,Prenom=:Prenom,Email=:Email,Motdepasse=:Motdepasse,Adresse=:Adresse,Telephone=:telephone WHERE Email=:email";
 		
 		$db = config::getConnexion();
 		//$db->setAttribute(PDO::ATTR_EMULATE_PREPARES,false);
 try{		
         $req=$db->prepare($sql);
-        $Id_client=$Client->getId_client();
         $Nom=$Client->getNom();
         $Prenom=$Client->getPrenom();
 		$Email=$Client->getEmail();
         $Motdepasse=$Client->getMotdepasse();
         $Adresse=$Client->getAdresse();
-        $Telephone=$Client->getTelephone();
-        $type=$Client->gettype();
-		$datas = array(':Id_client'=>$Id_client,':Nom'=>$Nom,':Prenom'=>$Prenom,':Email'=>$Email, ':Motdepasse'=>$Motdepasse, ':Adresse'=>$Adresse,':Telephone'=>$Telephone,':type'=>$type);
-		$req->bindValue(':Id_client',$Id_client);	
+        $telephone=$Client->getTelephone();
+		$datas = array(':Nom'=>$Nom,':Prenom'=>$Prenom,':Email'=>$Email, ':Motdepasse'=>$Motdepasse, ':Adresse'=>$Adresse,':telephone'=>$telephone);
 		$req->bindValue(':Nom',$Nom);
 		$req->bindValue(':Prenom',$Prenom);
-		$req->bindValue(':Email',$Email);
+		$req->bindValue(':Email',$email);
 		$req->bindValue(':Motdepasse',$Motdepasse);
 		$req->bindValue(':Adresse',$Adresse);
-		$req->bindValue(':Telephone',$Telephone);
-		$req->bindValue(':type',$type);
+		$req->bindValue(':telephone',$telephone);
+				$req->bindValue(':email',$email);
+
 		
             $s=$req->execute();
 			
@@ -106,8 +103,8 @@ try{
         }
 		
 	}
-	function recupererClient($Telephone){
-		$sql="SELECT * from client where Telephone=$Telephone";
+	function recupererClient($email){
+		$sql="SELECT * from client where Email='".$email."'";
 		$db = config::getConnexion();
 		try{
 		$liste=$db->query($sql);

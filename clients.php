@@ -235,13 +235,12 @@ $listeEmployes=$ClientC->afficherClient();
   <td><?PHP echo $row['Motdepasse']; ?></td>
   <td><?PHP echo $row['Adresse']; ?></td>
   <td><?PHP echo $row['Telephone']; ?></td>
-  <td><form method="POST" action="../login/views/supprimerClient.php">
+  <td><form method="POST" action="../views/supprimerClient.php">
   <input type="submit" name="supprimer" value="supprimer">
   <input type="hidden" value="<?PHP echo $row['Telephone']; ?>" name="Telephone">
   </form>
   </td>
-  <td><a href="../login/views/modifierClient.php?id=<?PHP echo $row['Telephone']; ?>">
-  Modifier</a></td>
+ 
   </tr>
 
   <?PHP

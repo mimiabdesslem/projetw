@@ -1,6 +1,6 @@
 <?php
 session_start();
-include "login/core/clientC.php";
+include "../core/clientC.php";
 $email=$_SESSION["email"];
 $sql="SELECT * From client where Email='" .$email."'";
     $db = config::getConnexion();
@@ -10,56 +10,183 @@ $sql="SELECT * From client where Email='" .$email."'";
 ?>
 <!DOCTYPE html>
 <html lang="en">
-
 <head>
-  <meta charset="utf-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <meta name="description" content="">
-  <meta name="author" content="Dashboard">
-  <meta name="keyword" content="Dashboard, Bootstrap, Admin, Template, Theme, Responsive, Fluid, Retina">
-  <title>Dashboard JTS</title>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    
+    <!-- Font Icon -->
+    <link rel="stylesheet" href="../fonts/material-icon/css/material-design-iconic-font.min.css">
 
-  <!-- Favicons -->
-  <link href="img/favicon.png" rel="icon">
-  <link href="img/apple-touch-icon.png" rel="apple-touch-icon">
+    <!-- Main css -->
+    <link rel="stylesheet" href="../css/style.css">
+    <meta charset="utf-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+         <!-- The above 3 meta tags must come first in the head; any other head content must come after these tags -->
 
-  <!-- Bootstrap core CSS -->
-  <link href="lib/bootstrap/css/bootstrap.min.css" rel="stylesheet">
-  <!--external css-->
-  <link href="lib/font-awesome/css/font-awesome.css" rel="stylesheet" />
-  <link rel="stylesheet" type="text/css" href="css/zabuto_calendar.css">
-  <link rel="stylesheet" type="text/css" href="lib/gritter/css/jquery.gritter.css" />
-  <!-- Custom styles for this template -->
-  <link href="css1/style.css" rel="stylesheet">
-  <link href="css1/style-responsive.css" rel="stylesheet">
-  <script src="lib/chart-master/Chart.js"></script>
+        <title>Jelizi Technologies Services</title>
 
-  <!-- =======================================================
-    Template Name: Dashio
-    Template URL: https://templatemag.com/dashio-bootstrap-admin-template/
-    Author: TemplateMag.com
-    License: https://templatemag.com/license/
-  ======================================================= -->
+        <!-- Google font -->
+        <link href="https://fonts.googleapis.com/css?family=Montserrat:400,500,700" rel="stylesheet">
+
+        <!-- Bootstrap -->
+        <link type="text/css" rel="stylesheet" href="../css/bootstrap.min.css"/>
+
+        <!-- Slick -->
+        <link type="text/css" rel="stylesheet" href="../css/slick.css"/>
+        <link type="text/css" rel="stylesheet" href="../css/slick-theme.css"/>
+
+        <!-- nouislider -->
+        <link type="text/css" rel="stylesheet" href="../css/nouislider.min.css"/>
+
+        <!-- Font Awesome Icon -->
+        <link rel="stylesheet" href="../css/font-awesome.min.css">
+
+        <!-- Custom stlylesheet -->
+        <link type="text/css" rel="stylesheet" href="../css/style.css"/>
 </head>
-
 <body>
-  <section id="container">
-    <!-- **********************************************************************************************************************************************************
-        TOP BAR CONTENT & NOTIFICATIONS
-        *********************************************************************************************************************************************************** -->
-    <!--header start-->
-    <header class="header black-bg">
-      <div class="sidebar-toggle-box">
-        <div class="fa fa-bars tooltips" data-placement="right" data-original-title="Toggle Navigation"></div>
-      </div>
-      <!--logo start-->
-      
-      <!--logo end-->
-      <div class="nav notify-row" id="top_menu">
-        
-      </div>
-      
-    </header>
+
+        <!-- HEADER -->
+        <header>
+            <!-- TOP HEADER -->
+          <div id="top-header">
+<div class="container">
+<ul class="header-links pull-left">
+<li><a href="#"><i class="fa fa-phone"></i> +216-79459000</a></li>
+<li><a href="#"><i class="fa fa-envelope-o"></i>
+jelizi.technologie.services@gnet.tn</a></li>
+<li><a href="#"><i class="fa fa-map-marker"></i> Avenue Farhat Hached
+Rades</a></li>
+</ul>
+                    <ul class="header-links pull-right">
+                        <li><a href="#"><i class="fa fa-dollar"></i>
+TND</a></li>
+        <li><a href="login.html"><i class="fa fa-user-o"></i> Espace Client</a></li>
+                        <li><a href="fidelite.html"><i class="fa fa-user-o"></i> Fidelité</a></li>
+</div>
+</div>
+            <!-- /TOP HEADER -->
+
+            <!-- MAIN HEADER -->
+            <div id="header">
+                <!-- container -->
+                <div class="container">
+                    <!-- row -->
+                    <div class="row">
+                        <!-- LOGO -->
+                        <div class="col-md-3">
+                            <div class="header-logo">
+                                <a href="#" class="logo">
+                                    <img src="./img/logo.png" alt="">
+                                </a>
+                            </div>
+                        </div>
+                        <!-- /LOGO -->
+
+                        <!-- SEARCH BAR -->
+                        
+                        <!-- /SEARCH BAR -->
+
+                        <!-- ACCOUNT -->
+                        <div class="col-md-3 clearfix">
+                            <div class="header-ctn">
+                                <!-- Wishlist -->
+                                <div>
+                                    <a href="#">
+                                        <i class="fa fa-heart-o"></i>
+                                        <span>Favoris</span>
+                                        <div class="qty">2</div>
+                                    </a>
+                                </div>
+                                <!-- /Wishlist -->
+
+                                <!-- Cart -->
+                                <div class="dropdown">
+                                    <a class="dropdown-toggle" data-toggle="dropdown" aria-expanded="true">
+                                        <i class="fa fa-shopping-cart"></i>
+                                        <span>Panier</span>
+                                        <div class="qty">3</div>
+                                    </a>
+                                    <div class="cart-dropdown">
+                                        <div class="cart-list">
+                                            <div class="product-widget">
+                                                <div class="product-img">
+                                                    <img src="./img/product01.png" alt="">
+                                                </div>
+                                                <div class="product-body">
+                                                    <h3 class="product-name"><a href="#">product name goes here</a></h3>
+                                                    <h4 class="product-price"><span class="qty">1x</span>$980.00</h4>
+                                                </div>
+                                                <button class="delete"><i class="fa fa-close"></i></button>
+                                            </div>
+
+                                            <div class="product-widget">
+                                                <div class="product-img">
+                                                    <img src="./img/product02.png" alt="">
+                                                </div>
+                                                <div class="product-body">
+                                                    <h3 class="product-name"><a href="#">product name goes here</a></h3>
+                                                    <h4 class="product-price"><span class="qty">3x</span>$980.00</h4>
+                                                </div>
+                                                <button class="delete"><i class="fa fa-close"></i></button>
+                                            </div>
+                                        </div>
+                                        <div class="cart-summary">
+                                            <small>3 Item(s) selected</small>
+                                            <h5>SUBTOTAL: $2940.00</h5>
+                                        </div>
+                                        <div class="cart-btns">
+                                            <a href="#">Voir Panier</a>
+                                            <a href="checkout.html">Commander  <i class="fa fa-arrow-circle-right"></i></a>
+                                        </div>
+                                    </div>
+                                </div>
+                                <!-- /Cart -->
+
+                                <!-- Menu Toogle -->
+                                <div class="menu-toggle">
+                                    <a href="#">
+                                        <i class="fa fa-bars"></i>
+                                        <span>Menu</span>
+                                    </a>
+                                </div>
+                                <!-- /Menu Toogle -->
+                            </div>
+                        </div>
+                        <!-- /ACCOUNT -->
+                    </div>
+                    <!-- row -->
+                </div>
+                <!-- container -->
+            </div>
+            <!-- /MAIN HEADER -->
+        </header>
+        <!-- /HEADER -->
+
+        <!-- NAVIGATION -->
+        <nav id="navigation">
+            <!-- container -->
+            <div class="container">
+                <!-- responsive-nav -->
+                <div id="responsive-nav">
+                    <!-- NAV -->
+                    <ul class="main-nav nav navbar-nav">
+                        <li class="active"><a href="index.html">Acceuil</a></li>
+
+                        <li><a href="Accessoires informatiques.html">Accessoires informatiques</a></li>
+                        <li><a href="securite.html">Sécurité</a></li>
+                        
+                        <li><a href="reclamation.html">Reclamation</a></li>
+                        <li><a href="contact.html">Contact</a></li>
+                    </ul>
+                    <!-- /NAV -->
+                </div>
+                <!-- /responsive-nav -->
+            </div>
+            <!-- /container -->
+        </nav>
     <!--header end-->
     <!-- **********************************************************************************************************************************************************
         MAIN SIDEBAR MENU
@@ -72,11 +199,7 @@ $sql="SELECT * From client where Email='" .$email."'";
         
            <li class="sub-menu">
             <a href="javascript:;">
-              <i class=" fa fa-bar-chart-o"></i>
-              <span>votre compte</span>
-              </a>
-            <ul class="sub">
-              <li><a href="dashbord.php">votre compte</a></li>
+             
               
               
             </ul>
@@ -165,12 +288,12 @@ $sql="SELECT * From client where Email='" .$email."'";
   <td><?PHP echo $row['Motdepasse']; ?></td>
   <td><?PHP echo $row['Adresse']; ?></td>
   <td><?PHP echo $row['Telephone']; ?></td>
-  <td><form method="POST" action="../login/views/supprimerClient_front.php">
+  <td><form method="POST" action="../views/supprimerClient_front.php">
   <input type="submit" name="supprimer" value="supprimer">
   <input type="hidden" value="<?PHP echo $row['Telephone']; ?>" name="Telephone">
   </form>
   </td>
-  <td><a href="../login/views/modifierClient.php?id=<?PHP echo $row['Telephone']; ?>">
+  <td><a href="modifierClient.php?mail=<?PHP echo $row['Email']; ?>">
   Modifier</a></td>
   </tr>
 
@@ -188,82 +311,138 @@ $sql="SELECT * From client where Email='" .$email."'";
     <!--footer end-->
   </section>
   <!-- js placed at the end of the document so the pages load faster -->
-  <script src="lib/jquery/jquery.min.js"></script>
+  <script src="vendor/jquery/jquery.min.js"></script>
+    <script src="js/main.js"></script>
+    <div id="newsletter" class="section">
+            <!-- container -->
+            <div class="container">
+                <!-- row -->
+                <div class="row">
+                    <div class="col-md-12">
+                        <div class="newsletter">
+                            <p>Veuillez entrer votre <strong>Email</strong></p>
+                            <form>
+                                <input class="input" type="email" placeholder="Entrez votre mail">
+                                <button class="newsletter-btn"><i class="fa fa-envelope"></i> S'abonner </button>
+                            </form>
+                            <ul class="newsletter-follow">
+                                <li>
+                                    <a href="https://www.facebook.com/Jelizi.technologie.services/"><i class="fa fa-facebook"></i></a>
+                                </li>
+                                
+                                <li>
+                                    <a href="#"><i class="fa fa-instagram"></i></a>
+                                </li>
+                                
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+                <!-- /row -->
+            </div>
+            <!-- /container -->
+        </div>
+        <!-- /NEWSLETTER -->
 
-  <script src="lib/bootstrap/js/bootstrap.min.js"></script>
-  <script class="include" type="text/javascript" src="lib/jquery.dcjqaccordion.2.7.js"></script>
-  <script src="lib/jquery.scrollTo.min.js"></script>
-  <script src="lib/jquery.nicescroll.js" type="text/javascript"></script>
-  <script src="lib/jquery.sparkline.js"></script>
-  <!--common script for all pages-->
-  <script src="lib/common-scripts.js"></script>
-  <script type="text/javascript" src="lib/gritter/js/jquery.gritter.js"></script>
-  <script type="text/javascript" src="lib/gritter-conf.js"></script>
-  <!--script for this page-->
-  <script src="lib/sparkline-chart.js"></script>
-  <script src="lib/zabuto_calendar.js"></script>
-  <script type="text/javascript">
-    $(document).ready(function() {
-      var unique_id = $.gritter.add({
-        // (string | mandatory) the heading of the notification
-        title: 'Welcome to Dashio!',
-        // (string | mandatory) the text inside the notification
-        text: 'Hover me to enable the Close Button. You can hide the left sidebar clicking on the button next to the logo.',
-        // (string | optional) the image to display on the left
-        image: 'img/ui-sam.jpg',
-        // (bool | optional) if you want it to fade out on its own or just sit there
-        sticky: false,
-        // (int | optional) the time you want it to be alive for before fading out
-        time: 8000,
-        // (string | optional) the class name you want to apply to that specific message
-        class_name: 'my-sticky-class'
-      });
+        <!-- FOOTER -->
+        <footer id="footer">
+            <!-- top footer -->
+            <div class="section">
+                <!-- container -->
+                <div class="container">
+                    <!-- row -->
+                    <div class="row">
+                        <div class="col-md-3 col-xs-6">
+                            <div class="footer">
+                                <h3 class="footer-title">A propos de nous</h3>
+                                <p>Installation et maintenance réseaux informatique, téléphonie,video surveillance, système d'alarme Vente et réparation matériaux informatiques et bureautiques.</p>
+                                <ul class="footer-links">
+                                    <li><a href="#"><i class="fa fa-map-marker"></i>Avenue Farhat Hached Rades</a></li>
+                                    <li><a href="#"><i class="fa fa-phone"></i> +216-79459000</a></li>
+                                    <li><a href="#"><i class="fa fa-envelope-o"></i>jelizi.technologie.services@gnet.tn</a></li>
+                                </ul>
+                            </div>
+                        </div>
 
-      return false;
-    });
-  </script>
-  <script type="application/javascript">
-    $(document).ready(function() {
-      $("#date-popover").popover({
-        html: true,
-        trigger: "manual"
-      });
-      $("#date-popover").hide();
-      $("#date-popover").click(function(e) {
-        $(this).hide();
-      });
+                        <div class="col-md-3 col-xs-6">
+                            <div class="footer">
+                                <h3 class="footer-title">Categories</h3>
+                                <ul class="footer-links">
+                                    <li><a href="#">Accessoires Informatiques</a></li>
+                                    <li><a href="#">Accessoires de sécurité</a></li>
+                                    <li><a href="#">Services</a></li>
+                                </ul>
+                            </div>
+                        </div>
 
-      $("#my-calendar").zabuto_calendar({
-        action: function() {
-          return myDateFunction(this.id, false);
-        },
-        action_nav: function() {
-          return myNavFunction(this.id);
-        },
-        ajax: {
-          url: "show_data.php?action=1",
-          modal: true
-        },
-        legend: [{
-            type: "text",
-            label: "Special event",
-            badge: "00"
-          },
-          {
-            type: "block",
-            label: "Regular event",
-          }
-        ]
-      });
-    });
+                        <div class="clearfix visible-xs"></div>
 
-    function myNavFunction(id) {
-      $("#date-popover").hide();
-      var nav = $("#" + id).data("navigation");
-      var to = $("#" + id).data("to");
-      console.log('nav ' + nav + ' to: ' + to.month + '/' + to.year);
-    }
-  </script>
-</body>
+                        <div class="col-md-3 col-xs-6">
+                            <div class="footer">
+                                <h3 class="footer-title">Informations</h3>
+                                <ul class="footer-links">
+                                    <li><a href="#">A propos de nous</a></li>
+                                    <li><a href="#">Contact</a></li>
+                                    
+                                </ul>
+                            </div>
+                        </div>
 
+                        <div class="col-md-3 col-xs-6">
+                            <div class="footer">
+                                <h3 class="footer-title">Client</h3>
+                                <ul class="footer-links">
+                                    <li><a href="#">Mon compte</a></li>
+                                    <li><a href="#">Mon panier</a></li>
+                                    <li><a href="#">Favoris</a></li>
+                                    <li><a href="#">Suivre ma commande</a></li>
+                                    
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+                    <!-- /row -->
+                </div>
+                <!-- /container -->
+            </div>
+            <!-- /top footer -->
+
+            <!-- bottom footer -->
+            <div id="bottom-footer" class="section">
+                <div class="container">
+                    <!-- row -->
+                    <div class="row">
+                        <div class="col-md-12 text-center">
+                            <ul class="footer-payments">
+                                <li><a href="#"><i class="fa fa-cc-visa"></i></a></li>
+                                <li><a href="#"><i class="fa fa-credit-card"></i></a></li>
+                                <li><a href="#"><i class="fa fa-cc-paypal"></i></a></li>
+                                <li><a href="#"><i class="fa fa-cc-mastercard"></i></a></li>
+                                <li><a href="#"><i class="fa fa-cc-discover"></i></a></li>
+                                <li><a href="#"><i class="fa fa-cc-amex"></i></a></li>
+                            </ul>
+                            <span class="copyright">
+                                <!-- Link back to Colorlib can't be removed. Template is licensed under CC BY 3.0. -->
+                                Copyright &copy;<script>document.write(new Date().getFullYear());</script> All rights reserved | made with <i class="fa fa-heart-o" aria-hidden="true"></i> by<a href="https://colorlib.com"> Untouchable</a>
+                            <!-- Link back to Colorlib can't be removed. Template is licensed under CC BY 3.0. -->
+                            </span>
+                        </div>
+                    </div>
+                        <!-- /row -->
+                </div>
+                <!-- /container -->
+            </div>
+            <!-- /bottom footer -->
+        </footer>
+        <!-- /FOOTER -->
+
+        <!-- jQuery Plugins -->
+        <script src="js/jquery.min.js"></script>
+        <script src="js/bootstrap.min.js"></script>
+        <script src="js/slick.min.js"></script>
+        <script src="js/nouislider.min.js"></script>
+        <script src="js/jquery.zoom.min.js"></script>
+        <script src="js/main.js"></script>
+
+</body><!-- This templates was made by Colorlib (https://colorlib.com) -->
 </html>
